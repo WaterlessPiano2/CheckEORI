@@ -1,5 +1,5 @@
 import axios from "axios";
-import validate from "../utils/validation";
+import validate from "../../utils/validation";
 
 const getRequestParams = (input) => {
   const url =
