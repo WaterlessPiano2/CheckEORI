@@ -1,4 +1,5 @@
 import axios from "axios";
+import validate from "../utils/validation";
 
 const getRequestParams = (input) => {
   const url =
@@ -16,9 +17,10 @@ const getRequestParams = (input) => {
 
 export default async (req, res) => {
   const { input } = req.body;
-  if (!input || !input.length) {
+  const isValid = validate(input);
+  if (isValid !== "VALID") {
     return res.status(400).json({
-      error: "Enter the UK EORI number",
+      error: isValid,
     });
   }
   try {

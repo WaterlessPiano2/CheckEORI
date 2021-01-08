@@ -1,5 +1,7 @@
 import Head from "next/head";
 import React, { useState } from "react";
+import validate from "../utils/validation";
+
 const axios = require("axios").default;
 
 export default function Home() {
@@ -11,22 +13,22 @@ export default function Home() {
   const sendInput = async () => {
     setErrorMessage("");
     setState("LOADING!");
-    if (!input) {
-      setErrorMessage(null);
-      setErrorMessage("Enter the EORI number");
+    setResult("");
+
+    const isValid = validate(input);
+    if (isValid !== "VALID") {
+      setErrorMessage(isValid);
       setState("ERROR:");
       setResult("");
     }
     try {
       const response = await axios.post("/api/eori", { input });
-      setState("SUCCESS!");      
+      setState("SUCCESS!");
       setResult(JSON.stringify(response.data));
-
     } catch (e) {
       console.log(e);
       setErrorMessage(e.response.data.error);
       setState("ERROR!");
-      setResult("");
     }
   };
 
