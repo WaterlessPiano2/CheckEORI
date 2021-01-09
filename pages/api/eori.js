@@ -16,6 +16,7 @@ const getRequestParams = (input) => {
 };
 
 export default async (req, res) => {
+  console.log("db");
   const { input } = req.body;
   const isValid = validate(input);
   if (isValid !== "VALID") {
