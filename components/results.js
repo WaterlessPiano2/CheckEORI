@@ -1,27 +1,34 @@
 import Header from "./headers";
+import React, { useState } from "react";
+
 import EORI from "./eori";
 import TraderName from "./traderName";
 import Address from "./address";
 
-export default function Results({ result }) {
-  const parseddResults = JSON.parse(result);
+export default function Results() {
+  const [result, setResult] = useState("");
+
+
 
   return (
-    <div className="bg-white shadow overflow-hidden sm:rounded-lg">
-      <Header result={result} />
-
+    <div className="bg-white shadow-xl sm:rounded-lg w-full">
+      <Header searchResult={(e) => setResult(e)} />
       <div className="border-t border-gray-200">
-        <dl>
-          {parseddResults.eori && <EORI eori={parseddResults.eori} />}
-          {parseddResults.companyDetails &&
-            parseddResults.companyDetails.traderName && (
-              <TraderName name={parseddResults.companyDetails.traderName} />
-            )}
-          {parseddResults.companyDetails &&
-            parseddResults.companyDetails.address && (
-              <Address address={parseddResults.companyDetails.address} />
-            )}
-        </dl>
+        {result ? (
+          <dl>
+            {JSON.parse(result).eori && <EORI eori={JSON.parse(result).eori} />}
+            {JSON.parse(result).companyDetails &&
+              JSON.parse(result).companyDetails.traderName && (
+                <TraderName name={JSON.parse(result).companyDetails.traderName} />
+              )}
+            {JSON.parse(result).companyDetails &&
+              JSON.parse(result).companyDetails.address && (
+                <Address address={JSON.parse(result).companyDetails.address} />
+              )}
+          </dl>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

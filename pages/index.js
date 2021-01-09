@@ -13,9 +13,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex justify-center m-4 ">
-        <h1>GB123456789003</h1>
-        <Search result={(e) => setResult(e)} />
-        {result && <Results result={result} />}
+        {/* <Search result={(e) => setResult(e)} /> */}
+        <Results/>
       </main>
     </div>
   );

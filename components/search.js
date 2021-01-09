@@ -25,7 +25,7 @@ export default function Search({ result }) {
         setState("SUCCESS");
         result(JSON.stringify(response.data));
       } else {
-        setErrorMessage("");
+        setErrorMessage("The entered EORI is invalid.");
         setState("ERROR");
         result("");
         return;
@@ -43,10 +43,9 @@ export default function Search({ result }) {
     setInput(e.target.value);
   };
   return (
-    <div className="mt-20 flex flex-col sm:w-2/4 md:w-2/5 lg:w-1/4">
-      <label>Enter the UK EORI number</label>
+    <div className="grid grid-rows-2 px-4 py-5 sm:px-6 w-full">
       <input
-        className={`max-h-8 mt-2 p-2 block-inline sm:text-sm border-2  ${
+        className={`max-h-8 p-2 block-inline text-2xl border-2 w-full  ${
           errorMessage ? "border-red-500" : "border-gray-500"
         } rounded-md `}
         type="text"
@@ -55,7 +54,7 @@ export default function Search({ result }) {
         onChange={handleChangeInput}
       ></input>
       <button
-        className="mt-2 rounded-md bg-blue-500 text-gray-50 font-semibold py-2 disabled:opacity-50  hover:bg-blue-700  "
+        className="rounded-md bg-blue-500 text-gray-50 font-semibold text-2xl disabled:opacity-50 hover:bg-blue-700  "
         onClick={sendInput}
         disabled={state === "LOADING"}
       >
