@@ -29,7 +29,6 @@ export default function Search({ result, error }) {
         result("");
         return;
       }
-      console.log(response.data.valid);
     } catch (e) {
       console.log(e);
       error(e.response.data.error);

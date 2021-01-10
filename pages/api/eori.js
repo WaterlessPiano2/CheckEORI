@@ -16,7 +16,6 @@ const getRequestParams = (input) => {
 };
 
 export default async (req, res) => {
-  console.log("db");
   const { input } = req.body;
   const isValid = validate(input);
   if (isValid !== "VALID") {
@@ -29,7 +28,6 @@ export default async (req, res) => {
     const response = await axios.post(url, data, { headers });
     return res.status(201).json(response.data[0]);
   } catch (e) {
-    console.log(e.response.data);
     let errorMessage =
       "Oops, something went wrong... Please try again later or contact us.";
     if (e && e.response && e.response.data) {

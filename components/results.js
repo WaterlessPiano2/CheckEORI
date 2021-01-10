@@ -19,17 +19,9 @@ export default function Results() {
       <div className="border-t border-gray-200">
         {result && (
           <dl>
-            {JSON.parse(result).eori && <EORI eori={JSON.parse(result).eori} />}
-            {JSON.parse(result).companyDetails &&
-              JSON.parse(result).companyDetails.traderName && (
-                <TraderName
-                  name={JSON.parse(result).companyDetails.traderName}
-                />
-              )}
-            {JSON.parse(result).companyDetails &&
-              JSON.parse(result).companyDetails.address && (
-                <Address address={JSON.parse(result).companyDetails.address} />
-              )}
+            <EORI result={result} />
+            <TraderName result={result} />
+            <Address result={result} />
           </dl>
         )}
         {errorMessage && <Error message={errorMessage} />}
