@@ -43,9 +43,9 @@ export default function Search({ result }) {
     setInput(e.target.value);
   };
   return (
-    <div className="grid grid-rows-2 px-4 py-5 sm:px-6 w-full">
+    <div className="grid grid-rows-2 gap-4 px-4 py-5 sm:px-6 w-full">
       <input
-        className={`max-h-8 p-2 block-inline text-2xl border-2 w-full  ${
+        className={`p-2 block-inline text-2xl border-2 w-full  ${
           errorMessage ? "border-red-500" : "border-gray-500"
         } rounded-md `}
         type="text"
