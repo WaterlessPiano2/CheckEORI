@@ -8,7 +8,7 @@ export default function Header({ searchResult, errorMessage }) {
           Enter the EORI number you want to check
         </h3>
         <p className="max-w-2xl text-lg text-gray-500">
-          This will start with ‘GB’ or 'XI' followed by 12 numbers, for example
+          This will start with ‘GB’ and followed by 12 numbers, for example
           GB123456789000.
         </p>
       </div>
