@@ -1,6 +1,6 @@
 import Search from "./search";
 
-export default function Header({ searchResult }) {
+export default function Header({ searchResult, errorMessage }) {
   return (
     <div className="grid grid-cols-2">
       <div className="grid grid-rows-2  gap-4 px-4 py-5 sm:px-6">
@@ -12,7 +12,7 @@ export default function Header({ searchResult }) {
           GB123456789000.
         </p>
       </div>
-      <Search result={(e) => searchResult(e)} />
+      <Search result={(s) => searchResult(s)} error={(e) => errorMessage(e)} />
     </div>
   );
 }

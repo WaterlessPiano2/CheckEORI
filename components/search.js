@@ -3,19 +3,18 @@ import validate from "../utils/validation";
 
 const axios = require("axios").default;
 
-export default function Search({ result }) {
+export default function Search({ result, error }) {
   const [input, setInput] = useState("");
   const [state, setState] = useState("IDLE");
-  const [errorMessage, setErrorMessage] = useState("");
 
   const sendInput = async () => {
-    setErrorMessage("");
+    error("");
     setState("LOADING");
 
     const isValid = validate(input);
     if (isValid !== "VALID") {
-      setErrorMessage(isValid);
-      setState("ERROR:");
+      error(isValid);
+      setState("ERROR");
       result("");
       return;
     }
@@ -25,7 +24,7 @@ export default function Search({ result }) {
         setState("SUCCESS");
         result(JSON.stringify(response.data));
       } else {
-        setErrorMessage("The entered EORI is invalid.");
+        error("The entered EORI is invalid.");
         setState("ERROR");
         result("");
         return;
@@ -33,7 +32,7 @@ export default function Search({ result }) {
       console.log(response.data.valid);
     } catch (e) {
       console.log(e);
-      setErrorMessage(e.response.data.error);
+      error(e.response.data.error);
       setState("ERROR");
       result("");
     }
@@ -46,7 +45,7 @@ export default function Search({ result }) {
     <div className="grid grid-rows-2 gap-4 px-4 py-5 sm:px-6 w-full">
       <input
         className={`p-2 block-inline text-2xl border-2 w-full  ${
-          errorMessage ? "border-red-500" : "border-gray-500"
+          state === "ERROR" ? "border-red-500" : "border-gray-500"
         } rounded-md `}
         type="text"
         name="eoriInput"
@@ -60,9 +59,6 @@ export default function Search({ result }) {
       >
         Check
       </button>
-      {errorMessage && (
-        <div className="text-red-500">{`Error: ${errorMessage}`}</div>
-      )}
     </div>
   );
 }
