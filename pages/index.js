@@ -1,5 +1,6 @@
 import Head from "next/head";
-import Navbar from "../components/Navbar";
+import Results from "../components/results";
+import Warning from "../components/warning";
 
 export default function Home() {
   return (
@@ -8,9 +9,9 @@ export default function Home() {
         <title>Authenticated TODO App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Navbar />
-        <h1>Todo App</h1>
+      <main className="justify-center m-4 ">
+        <Results />
+        <Warning />
       </main>
     </div>
   );
