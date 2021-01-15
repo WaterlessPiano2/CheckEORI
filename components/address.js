@@ -10,7 +10,11 @@ export default function Address({ result }) {
   }
   return (
     <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-      <dt className={`text-xl font-medium text-gray-900 sm:col-span-${address? 3:1}`}>
+      <dt
+        className={`text-xl font-medium text-gray-900 ${
+          address ? "sm:col-span-3" : "sm:col-span-1"
+        }`}
+      >
         Address
       </dt>
       {!address ? (
